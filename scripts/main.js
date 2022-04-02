@@ -1,6 +1,20 @@
 
 // Se pide que el usuario ingrese la cantidad de libros que va a comprar. SI está entre 1 y 4 se le pide que ingrese los nombres de los libros y los precios. Cada libro y precio conforman un nuevo objeto Libro que ingresa al array cantLibros y además se los escribe en la pagina con document.write.
 
+let saludo = document.getElementById("saludo");
+saludo.addEventListener("input", e => {
+        let hola = saludo.value    
+    })
+  let hola = saludo.addEventListener('keyup', e => {
+   if(e.keyCode === 13) {
+     let h3 = document.createElement("h3")
+  h3.innerHTML = "¡Hola " + saludo.value + "!";
+ 	document.getElementById("form").insertBefore(h3, saludo);
+     
+   }})
+noCompra.onclick = function() {
+    alert("Por favor, ¡Compre algo!");
+  };
 class Libro {
 	constructor(nombre,precio) {
 	  this.nombre = nombre.toLowerCase();
@@ -8,10 +22,14 @@ class Libro {
 	}
   }
   const listaLibros = [];
-  
-  			let cantLibro = parseInt(prompt("Ingrese cantidad de libros "));
-			
-			if (cantLibro == 0 || cantLibro < 0) {
+let cantLibro = 0;
+  total = 0;
+
+  		compra.onclick = () => {
+   
+     cantLibro = parseInt(prompt("Ingrese cantidad de libros "));
+        
+       if (cantLibro == 0 || cantLibro < 0) {
 				alert("Por favor, ¡Compre algo!") }
 
 			else if (cantLibro >= 5) {
@@ -28,23 +46,36 @@ do {
 	while(listaLibros.length < cantLibro);
 
 console.log(listaLibros)
+  
 
 for (let libro of listaLibros) {
+  let li = document.createElement("li")
+  li.innerHTML = "Libro:  " + libro.nombre + ". Precio: " + libro.precio + " pesos. <br>"; 
+  document.getElementById("lista").appendChild(li)
+}
   
-  document.write( "Libro:  " + libro.nombre + ". Precio: " + libro.precio + " pesos. <br>")
-}
-}
-// funcion que calcula el precio total de los libros. Si se compran más de 3, hay un descuento del 15% sobre el total
-total = 0;
-const calcularPrecio = arr => {
-  for (let l of arr) { 
+ }  
+
+  };	
+  
+   calcular.onclick = () => {
+	   total = 0;
+if(  cantLibro <= 0 || cantLibro >= 5 ) { 
+alert("Recuerde completar correctamente su compra")}
+  else {
+    
+  for (let l of listaLibros) { 
   total += l.precio; }
-  if (arr.length > 3) {
+  if (listaLibros.length > 3) {
 	total = total - (total*15) /100;
 }
+  let h2 = document.createElement("h2")
+  h2.innerHTML = "Total a pagar: " + total;
+ 	document.body.appendChild(h2);
   
-  return console.log("Total a pagar: " + total);
- 	
-  }
+}}
 
-// calcularPrecio(listaLibros)
+
+
+			
+
