@@ -1,4 +1,6 @@
 /**
+ * Agregué Bootstrap y modifiqué el HTML
+ * Uso Sweet Alert para estilizar las alertas
  * Si el usuario ingresa el nombre en la caja de texto se captura el input y se lo escribe en la página.
  * Si ya hay datos guardados en Local Storage se pregunta si quiere usar esos datos. Si quiere se lo       * escribe en la página, si no quiere se inicia sin los datos y los tiene que cargar en la caja de texto.
  * Al clickear el botón subir compra se pide que el usuario ingrese la cantidad de libros que va a comprar. * Si está entre 1 y 4 se le pide que ingrese los nombres de los libros y los precios. 
@@ -48,14 +50,14 @@ if (user == null || user == "undefined") {
       }
     })
   } else if (cambiar.toLowerCase() == "n" || cambiar.toLowerCase() == "no") {
-    alert("Ok, tu nombre de usuario es " + user)
+    Swal.fire("Ok, tu nombre de usuario es " + user)
   } else {
-    alert("Por favor elegir si o no")
+    Swal.fire("Por favor elegir si o no")
   }
 }
 
 noCompra.onclick = function () {
-  alert("Por favor, ¡Compre algo!");
+  Swal.fire("Por favor, ¡Compre algo!");
 };
 class Libro {
   constructor(nombre, precio) {
@@ -69,21 +71,21 @@ compra.onclick = () => {
     array = JSON.parse(historial);
     let salida = `La vez pasada usted guardó estos libros: \n`;
     for (let i = 0; i < array.length; i++) {
-      salida = salida + (i + 1) + " -> " + array[i].nombre + " $ " + array[i].precio + `\n`;
+      salida = salida + (i + 1) + ". " + array[i].nombre + " $" + array[i].precio + `\n`;
     }
-    alert(salida)
+    
     let pregunta = prompt("¿Quiere borrar los libros guardados y guardar nuevos? si/no")
     if (pregunta.toLowerCase() == "s" || pregunta.toLowerCase() == "si") {
-
+      localStorage.removeItem("librosGuardados");
       const listaLibros = [];
       let cantLibro = 0;
       total = 0;
       cantLibro = parseInt(prompt("Ingrese cantidad de libros "));
 
       if (cantLibro == 0 || cantLibro < 0) {
-        alert("Por favor, ¡Compre algo!")
+        Swal.fire("Por favor, ¡Compre algo!")
       } else if (cantLibro >= 5) {
-        alert("Recuerde que la máxima cantidad permitida en una sola compra es de 4 libros.")
+        Swal.fire("Recuerde que la máxima cantidad permitida en una sola compra es de 4 libros.")
 
       } else {
         localStorage.setItem("cantidad", cantLibro);
@@ -105,39 +107,10 @@ compra.onclick = () => {
         }
       }
     } else if (pregunta.toLowerCase() == "n" || pregunta.toLowerCase() == "no") {
-      alert("¡Guardamos su elección!")
-      alert(salida)
+      Swal.fire("¡Guardamos su elección!")
+      Swal.fire(salida)
     } else {
-      alert("Por favor elija si o no")
+      Swal.fire("Por favor elija si o no")
     }
-  } else {
-    const listaLibros = [];
-    let cantLibro = 0;
-    total = 0;
-    cantLibro = parseInt(prompt("Ingrese cantidad de libros "));
-
-    if (cantLibro == 0 || cantLibro < 0) {
-      alert("Por favor, ¡Compre algo!")
-    } else if (cantLibro >= 5) {
-      alert("Recuerde que la máxima cantidad permitida en una sola compra es de 4 libros.")
-
-    } else {
-      do {
-        let compra = prompt("¿Qué libro lleva?");
-        let precio = parseFloat(prompt("Ingresar precio del libro "));
-        listaLibros.push(new Libro(compra, precio));
-      }
-      while (listaLibros.length < cantLibro);
-
-      console.log(listaLibros)
-      localStorage.setItem("librosGuardados", JSON.stringify(listaLibros));
-
-
-      for (let libro of listaLibros) {
-        let li = document.createElement("li")
-        li.innerHTML = "Libro:  " + libro.nombre + ". Precio: " + libro.precio + " pesos. <br>";
-        document.getElementById("lista").appendChild(li)
-      }
-    }
-  }
+  } 
 }
