@@ -1,26 +1,50 @@
-
-
 body {
 	margin: 0%;
 	padding: 0;
 }
+
 .container-fluid {
 	padding-left: 0 !important;
 	padding-right: 0 !important;
 }
 
+ul {
+	list-style-type: none;
+  }
 
 
-	
-}
+
+
 .footerNosotros {
 	img {
-		@include imgVar(40px,40px);
-		
-	};
+		@include imgVar(40px, 40px);
+
+	}
+
+	;
 }
+
 .btnBold {
-@extend .btn;
+	@extend .btn;
 	font-weight: bold !important;
 }
 
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+  }
+
+  .bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+  }
+
+  @media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+	  font-size: 3.5rem;
+	}
+  }
