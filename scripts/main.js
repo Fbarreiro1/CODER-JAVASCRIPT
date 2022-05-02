@@ -1,7 +1,7 @@
 /**
  * Uso Bootstrap para estilizar el HTML
   * Uso Sweet Alert para estilizar las alertas
-  * Recomendación semanal: Utilizo la Books API del New York Times para agarrar el libro top 1 de la semana y escribo en html titulo y autor
+  * Recomendación semanal: Utilizo la Books API del New York Times para agarrar el libro top 1 de la semana. escribo en html titulo y autor
  * Usuario y cambiar usuario: Si el usuario ingresa el nombre en la caja de texto se captura el input y se lo escribe en la página.
  * Si ya hay datos guardados en Local Storage se pregunta si quiere usar esos datos. Si quiere se lo escribe en la página, si no quiere se inicia sin los datos y los tiene que cargar en la caja de texto.
  * Agregar libros:  se pide que el usuario ingrese  los nombres de los libros y los precios. 
@@ -11,7 +11,7 @@
  * Si el usuario quiere mantener esos datos confirma y listo, si no puede cargar los nuevos.
  */
 
-//////////////////////////7
+//////////////////////////
 let formNombre = document.getElementById("formNombre");
 let user = localStorage.getItem("nombre");
 let form = document.getElementById("formLibros");
